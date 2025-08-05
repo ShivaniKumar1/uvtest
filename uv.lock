@@ -1,12 +1,6 @@
 version = 1
-revision = 3
+revision = 2
 requires-python = ">=3.13"
-
-[manifest]
-members = [
-    "hello-world",
-    "uv",
-]
 
 [[package]]
 name = "asttokens"
@@ -36,17 +30,6 @@ wheels = [
 ]
 
 [[package]]
-name = "hello-world"
-version = "0.1.0"
-source = { virtual = "hello-world" }
-dependencies = [
-    { name = "icecream" },
-]
-
-[package.metadata]
-requires-dist = [{ name = "icecream", specifier = ">=2.1.5" }]
-
-[[package]]
 name = "icecream"
 version = "2.1.5"
 source = { registry = "https://pypi.org/simple" }
@@ -74,3 +57,9 @@ wheels = [
 name = "uv"
 version = "0.1.0"
 source = { virtual = "." }
+dependencies = [
+    { name = "icecream" },
+]
+
+[package.metadata]
+requires-dist = [{ name = "icecream", specifier = ">=2.1.5" }]

@@ -1,4 +1,8 @@
+from icecream import ic
+
+
 def main():
+    ic("Hello from uv!")
     print("Hello from uv!")
 
 
