@@ -1,0 +1,33 @@
+name: uvtest
+services:
+- name: web
+  source_dir: /
+  github:
+    repo: ShivaniKumar1/uvtest
+    branch: main
+    deploy_on_push: true
+  
+  # Tell DigitalOcean this is a Python web service
+  environment_slug: python
+  instance_count: 1
+  instance_size_slug: basic-xxs
+  
+  # Custom build commands for uv
+  build_command: |
+    # Install uv
+    curl -LsSf https://github.com/astral-sh/uv/releases/download/0.7.10/uv-installer.sh | sh
+    export PATH="$HOME/.local/bin:$PATH"
+    # Sync dependencies
+    uv sync
+  
+  # Run command - serve the web app
+  run_command: |
+    export PATH="$HOME/.local/bin:$PATH"
+    PORT=$PORT uv run server.py
+  
+  # Required for web services
+  http_port: 8080
+  
+  envs:
+  - key: PORT
+    value: "8080"
